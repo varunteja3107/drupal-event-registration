@@ -1,0 +1,6 @@
+name: Event Registration
+type: module
+description: Custom event registration system
+core_version_requirement: ^10
+package: Custom
+
