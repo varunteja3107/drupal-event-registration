@@ -1,0 +1,7 @@
+event_registration.event_config:
+  path: '/admin/config/event-registration/event'
+  defaults:
+    _form: '\Drupal\event_registration\Form\EventConfigForm'
+    _title: 'Event Configuration'
+  requirements:
+    _access: 'TRUE'
