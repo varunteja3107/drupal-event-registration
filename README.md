@@ -1,42 +1,59 @@
 # Drupal Event Registration
 
-Custom Drupal 10 module that lets users register for events using a Drupal Form API form, stores registrations in custom tables, and sends email notifications.
+A complete Drupal 10 custom module that enables event registration through a user-facing form, stores registrations in custom database tables, and notifies both the user and admin by email. This repository is structured as a full Drupal project so it can be cloned and run directly.
 
-## What’s Included
-- Event configuration page for admins
-- Public event registration form with date window enforcement
+**Quick Links (set your base URL):**
+- Example local base URL: `http://localhost:8888`
+- Event registration form: `BASE_URL/event-registration`
+- Admin event config: `BASE_URL/admin/config/event-registration/events`
+- Admin settings: `BASE_URL/admin/config/event-registration/settings`
+- Admin registrations list: `BASE_URL/admin/reports/event-registrations`
+- Login: `BASE_URL/user/login`
+
+## Highlights
+- Admin config page to create events and registration windows
+- Public registration form available only during the configured window
 - Ajax-dependent dropdowns (Category → Event Date → Event Name)
-- Duplicate registration protection (Email + Event Date)
-- Custom database tables
-- Email notifications to user and admin
-- Admin listing page with filters and CSV export
-- Custom permissions for admin access
+- Duplicate protection using Email + Event Date
+- Custom tables for events and registrations
+- CSV export for admin reporting
+- Clean DI-based services (no `\Drupal::service()` in business logic)
+
+## Tech Stack
+- Drupal 10
+- PHP 8+
+- MySQL/MariaDB
+- Drupal Form API, Mail API, Config API
 
 ## Installation
-1. Place the module at `web/modules/custom/event_registration`
-2. Enable the module:
+1. Install dependencies:
+   `composer install`
+2. Ensure your Drupal site is running (local or hosted).
+3. Enable the module:
    `drush en event_registration`
-3. Run database updates:
+4. Run updates to create the database tables:
    `drush updb -y`
-4. Clear caches:
+5. Clear caches:
    `drush cr`
 
-If this repository is used as a full Drupal project, run:
-`composer install`
+## How To Use
+### Front End (User)
+- Visit `BASE_URL/event-registration`
+- Fill the registration form and submit
+- Confirmation email is sent to the user
 
-## URLs
-Replace `BASE_URL` with your Drupal site URL.
+### Back End (Admin)
+- Create events at `BASE_URL/admin/config/event-registration/events`
+- Configure admin notification email at `BASE_URL/admin/config/event-registration/settings`
+- View registrations and export CSV at `BASE_URL/admin/reports/event-registrations`
 
-- Event registration form:
-  `BASE_URL/event-registration`
-- Event configuration page:
-  `BASE_URL/admin/config/event-registration/events`
-- Admin settings page:
-  `BASE_URL/admin/config/event-registration/settings`
-- Admin registrations listing:
-  `BASE_URL/admin/reports/event-registrations`
-- Login page:
-  `BASE_URL/user/login`
+### Database (Verification)
+You can view the stored data using Drush or a DB admin tool:
+- `event_registration_event`
+- `event_registration_registration`
+
+Example using Drush:
+`drush sqlq "SELECT * FROM event_registration_registration;"`
 
 ## Permissions
 - `administer event registrations` for event configuration and settings
@@ -67,17 +84,11 @@ Stores user registrations.
 - `event_id`
 - `created`
 
-## Form Logic
-- The registration form is available only when today’s date falls between the registration start and end dates from the event configuration.
-- Category options are pulled from configured events that are currently open for registration.
-- Event Date options depend on the selected category.
-- Event Name options depend on the selected category and date.
-
-## Validation
-- Email format is validated by the email field.
-- Full Name, College Name, and Department allow only letters, numbers, and spaces.
-- Duplicate registrations are blocked using Email + Event Date.
-- User-friendly validation messages are shown for errors.
+## Validation Rules
+- Email format is validated
+- Text fields allow only letters, numbers, and spaces
+- Duplicate registrations are blocked using Email + Event Date
+- User-friendly errors are shown
 
 ## Email Notifications
 Uses the Drupal Mail API.
@@ -90,13 +101,22 @@ Email content includes:
 - Event Name
 - Category
 
-## Configuration
-Admin settings page stores configuration in the Config API:
-- Admin notification email address
-- Enable/disable admin notifications
+## Folder Structure
+- `web/modules/custom/event_registration`
+- `docs/ARCHITECTURE.md`
+- `docs/DATABASE.md`
+- `docs/SETUP.md`
+
+## Documentation
+- Architecture: `docs/ARCHITECTURE.md`
+- Database: `docs/DATABASE.md`
+- Setup Guide: `docs/SETUP.md`
+
+## Resume Bullet (Use This)
+Built a Drupal 10 custom module for event registration featuring dynamic Form API workflows, Ajax-driven filters, custom database schema, and Mail API notifications with admin reporting and CSV export.
 
 ## Notes
 - No contributed modules are used.
 - PSR-4 autoloading is followed.
-- Dependency Injection is used (no `\Drupal::service()` in business logic).
+- Dependency Injection is used throughout.
 - Code follows Drupal coding standards.
