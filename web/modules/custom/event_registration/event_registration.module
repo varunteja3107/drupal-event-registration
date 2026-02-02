@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Event Registration module.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function event_registration_mail($key, &$message, $params) {
+  $subject = '';
+  $lines = [];
+
+  switch ($key) {
+    case 'user_confirmation':
+      $subject = t('Event registration confirmation');
+      $lines[] = t('Hello @name,', ['@name' => $params['full_name']]);
+      $lines[] = t('Thank you for registering. Here are your event details:');
+      break;
+
+    case 'admin_notification':
+      $subject = t('New event registration received');
+      $lines[] = t('A new registration has been submitted. Details:');
+      break;
+  }
+
+  if ($subject) {
+    $lines[] = '';
+    $lines[] = t('Name: @name', ['@name' => $params['full_name']]);
+    $lines[] = t('Event Date: @date', ['@date' => $params['event_date']]);
+    $lines[] = t('Event Name: @event', ['@event' => $params['event_name']]);
+    $lines[] = t('Category: @category', ['@category' => $params['category']]);
+  }
+
+  $message['subject'] = $subject;
+  $message['body'] = $lines;
+}

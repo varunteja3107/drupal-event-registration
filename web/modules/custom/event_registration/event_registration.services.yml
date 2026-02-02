@@ -1,0 +1,4 @@
+services:
+  event_registration.storage:
+    class: Drupal\event_registration\Service\EventRegistrationStorage
+    arguments: ['@database', '@datetime.time']
