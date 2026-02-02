@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function event_registration_schema() {
+  $schema['event_config'] = [
+    'description' => 'Stores event configuration details.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'event_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'category' => [
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ],
+      'registration_start' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'registration_end' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'event_date' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['event_registration'] = [
+    'description' => 'Stores event registrations.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'event_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'full_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'college_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'department' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'email_event' => ['email', 'event_id'],
+    ],
+  ];
+
+  return $schema;
+}
+
