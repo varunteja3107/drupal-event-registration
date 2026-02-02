@@ -1,5 +1,11 @@
 # Setup Guide
 
+## Base URL
+This guide assumes your Drupal site is running at:
+`http://localhost:8888`
+
+If your URL is different, update the links in the README accordingly.
+
 ## Local Setup
 1. `composer install`
 2. Configure your Drupal database (MySQL/MariaDB).
@@ -12,12 +18,11 @@
    `drush cr`
 
 ## Access Links
-Replace `BASE_URL` with your site URL:
-- `BASE_URL/event-registration`
-- `BASE_URL/admin/config/event-registration/events`
-- `BASE_URL/admin/config/event-registration/settings`
-- `BASE_URL/admin/reports/event-registrations`
-- `BASE_URL/user/login`
+- `http://localhost:8888/event-registration`
+- `http://localhost:8888/admin/config/event-registration/events`
+- `http://localhost:8888/admin/config/event-registration/settings`
+- `http://localhost:8888/admin/reports/event-registrations`
+- `http://localhost:8888/user/login`
 
 ## Required Permissions
 Assign these permissions to the relevant role:
