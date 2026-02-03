@@ -59,6 +59,7 @@ graph TD
 - Setup Guide: `docs/SETUP.md`
 - Architecture: `docs/ARCHITECTURE.md`
 - Database Design: `docs/DATABASE.md`
+- Database Page: `docs/DATABASE_PAGE.md`
 - Walkthrough: `docs/DEMO.md`
 
 ## Permissions
