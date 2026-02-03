@@ -42,7 +42,6 @@ A step-by-step walkthrough is in `docs/DEMO.md`.
 ![Frontend](docs/images/frontend.png)
 ![Admin Configuration](docs/images/admin-config.png)
 ![Login](docs/images/login.png)
-![Database Tables](docs/images/database.svg)
 
 ## Architecture Overview
 ```mermaid
