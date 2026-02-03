@@ -159,6 +159,23 @@ class EventRegistrationStorage {
   }
 
   /**
+   * Checks if the selected event is open for registration today.
+   */
+  public function isEventOpen(string $category, string $event_date, string $event_name, string $today): bool {
+    $count = $this->connection->select('event_registration_event', 'e')
+      ->condition('category', $category)
+      ->condition('event_date', $event_date)
+      ->condition('event_name', $event_name)
+      ->condition('reg_start', $today, '<=')
+      ->condition('reg_end', $today, '>=')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    return (int) $count > 0;
+  }
+
+  /**
    * Checks if a registration already exists.
    */
   public function registrationExists(string $email, string $event_date): bool {

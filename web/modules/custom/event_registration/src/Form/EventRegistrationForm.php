@@ -212,6 +212,7 @@ class EventRegistrationForm extends FormBase {
 
     $email = (string) $form_state->getValue('email');
     $event_date = (string) $form_state->getValue('event_date');
+    $today = $this->storage->getToday();
 
     if ($this->storage->registrationExists($email, $event_date)) {
       $form_state->setErrorByName('email', $this->t('A registration already exists for this email and event date.'));
@@ -225,6 +226,15 @@ class EventRegistrationForm extends FormBase {
 
     if (!$event_id) {
       $form_state->setErrorByName('event_name', $this->t('The selected event is no longer available.'));
+    }
+
+    if ($event_id && !$this->storage->isEventOpen(
+      (string) $form_state->getValue('category'),
+      $event_date,
+      (string) $form_state->getValue('event_name'),
+      $today
+    )) {
+      $form_state->setErrorByName('event_name', $this->t('Registration is closed for the selected event.'));
     }
   }
 
@@ -245,6 +255,12 @@ class EventRegistrationForm extends FormBase {
     $event_id = $this->storage->getEventId($values['category'], $values['event_date'], $values['event_name']);
     if (!$event_id) {
       $this->messenger->addError($this->t('The selected event is no longer available.'));
+      return;
+    }
+
+    $today = $this->storage->getToday();
+    if (!$this->storage->isEventOpen($values['category'], $values['event_date'], $values['event_name'], $today)) {
+      $this->messenger->addError($this->t('Registration is closed for the selected event.'));
       return;
     }
 
