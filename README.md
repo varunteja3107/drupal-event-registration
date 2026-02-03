@@ -9,6 +9,7 @@ A production-ready Drupal 10 custom module that enables event registration via a
 - Admin event config: `http://drupal10-clean.ddev.site/admin/config/event-registration/event`
 - Admin settings: `http://drupal10-clean.ddev.site/admin/config/event-registration/settings`
 - Admin registrations list: `http://drupal10-clean.ddev.site/admin/reports/event-registrations`
+- Site information (Drupal core): `http://drupal10-clean.ddev.site/admin/config/system/site-information`
 - Login: `http://drupal10-clean.ddev.site/user/login`
 
 If your site runs on a different URL, update all links above to match your environment.

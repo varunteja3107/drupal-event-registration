@@ -22,6 +22,7 @@ If your URL is different, update the links in the README accordingly.
 - `http://drupal10-clean.ddev.site/admin/config/event-registration/event`
 - `http://drupal10-clean.ddev.site/admin/config/event-registration/settings`
 - `http://drupal10-clean.ddev.site/admin/reports/event-registrations`
+- `http://drupal10-clean.ddev.site/admin/config/system/site-information`
 - `http://drupal10-clean.ddev.site/user/login`
 
 ## Required Permissions

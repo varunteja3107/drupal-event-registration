@@ -19,6 +19,8 @@ This walkthrough assumes your site runs at:
    `http://drupal10-clean.ddev.site/admin/config/event-registration/settings`
 4. View registrations and export CSV:
    `http://drupal10-clean.ddev.site/admin/reports/event-registrations`
+5. Update site name or email (core):
+   `http://drupal10-clean.ddev.site/admin/config/system/site-information`
 
 ## Database (Verification)
 View records in the custom tables:
