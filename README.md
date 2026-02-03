@@ -2,14 +2,14 @@
 
 A production-ready Drupal 10 custom module that enables event registration via a public form, stores registrations in custom tables, and sends email notifications to both users and admins. This repository is structured as a full Drupal project so it can be cloned and run directly.
 
-**Base URL (for all links below):** `http://localhost:8888`
+**Base URL (for all links below):** `http://drupal10-clean.ddev.site`
 
 ## Live Links
-- Frontend registration form: `http://localhost:8888/event-registration`
-- Admin event config: `http://localhost:8888/admin/config/event-registration/events`
-- Admin settings: `http://localhost:8888/admin/config/event-registration/settings`
-- Admin registrations list: `http://localhost:8888/admin/reports/event-registrations`
-- Login: `http://localhost:8888/user/login`
+- Frontend registration form: `http://drupal10-clean.ddev.site/event/register`
+- Admin event config: `http://drupal10-clean.ddev.site/admin/config/event-registration/event`
+- Admin settings: `http://drupal10-clean.ddev.site/admin/config/event-registration/settings`
+- Admin registrations list: `http://drupal10-clean.ddev.site/admin/reports/event-registrations`
+- Login: `http://drupal10-clean.ddev.site/user/login`
 
 If your site runs on a different URL, update all links above to match your environment.
 
@@ -37,11 +37,10 @@ If your site runs on a different URL, update all links above to match your envir
 ## Frontend, Backend, Database (Walkthrough)
 A step-by-step walkthrough is in `docs/DEMO.md`.
 
-## Screenshots (Placeholders)
-Replace these with real screenshots when your site is running.
-
-![Frontend Form](docs/images/frontend.svg)
-![Admin Config](docs/images/admin.svg)
+## Screenshots
+![Frontend](docs/images/frontend.png)
+![Admin Configuration](docs/images/admin-config.png)
+![Login](docs/images/login.png)
 ![Database Tables](docs/images/database.svg)
 
 ## Architecture Overview

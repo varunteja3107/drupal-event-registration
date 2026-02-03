@@ -1,14 +1,34 @@
 <?php
 
 /**
+ * @file
+ * Install file for Event Registration module.
+ */
+
+/**
  * Implements hook_schema().
  */
 function event_registration_schema() {
-  $schema['event_config'] = [
+  $schema['event_registration_event'] = [
     'description' => 'Stores event configuration details.',
     'fields' => [
       'id' => [
         'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'reg_start' => [
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'reg_end' => [
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'event_date' => [
+        'type' => 'varchar',
+        'length' => 10,
         'not null' => TRUE,
       ],
       'event_name' => [
@@ -18,34 +38,22 @@ function event_registration_schema() {
       ],
       'category' => [
         'type' => 'varchar',
-        'length' => 100,
-        'not null' => TRUE,
-      ],
-      'registration_start' => [
-        'type' => 'int',
-        'not null' => TRUE,
-      ],
-      'registration_end' => [
-        'type' => 'int',
-        'not null' => TRUE,
-      ],
-      'event_date' => [
-        'type' => 'int',
+        'length' => 64,
         'not null' => TRUE,
       ],
     ],
     'primary key' => ['id'],
+    'indexes' => [
+      'category_date' => ['category', 'event_date'],
+      'reg_window' => ['reg_start', 'reg_end'],
+    ],
   ];
 
-  $schema['event_registration'] = [
-    'description' => 'Stores event registrations.',
+  $schema['event_registration_registration'] = [
+    'description' => 'Stores event registrations submitted by users.',
     'fields' => [
       'id' => [
         'type' => 'serial',
-        'not null' => TRUE,
-      ],
-      'event_id' => [
-        'type' => 'int',
         'not null' => TRUE,
       ],
       'full_name' => [
@@ -55,10 +63,10 @@ function event_registration_schema() {
       ],
       'email' => [
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 254,
         'not null' => TRUE,
       ],
-      'college_name' => [
+      'college' => [
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
@@ -68,17 +76,38 @@ function event_registration_schema() {
         'length' => 255,
         'not null' => TRUE,
       ],
+      'category' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ],
+      'event_date' => [
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'event_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'event_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
       'created' => [
         'type' => 'int',
         'not null' => TRUE,
+        'default' => 0,
       ],
     ],
     'primary key' => ['id'],
     'indexes' => [
-      'email_event' => ['email', 'event_id'],
+      'email_date' => ['email', 'event_date'],
+      'event_ref' => ['event_id'],
+      'event_name_date' => ['event_name', 'event_date'],
     ],
   ];
 
   return $schema;
 }
-

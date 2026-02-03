@@ -1,2 +1,7 @@
-administer event registration:
-  title: 'Administer Event Registration'
+administer event registrations:
+  title: 'Administer event registrations'
+  description: 'Manage event configuration and notification settings.'
+
+view event registrations:
+  title: 'View event registrations'
+  description: 'View registrations and export CSV reports.'

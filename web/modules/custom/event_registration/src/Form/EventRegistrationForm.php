@@ -112,9 +112,11 @@ class EventRegistrationForm extends FormBase {
     if (!$selected_date || !isset($date_options[$selected_date])) {
       $selected_date = array_key_first($date_options);
     }
+
     $name_options = ($selected_category && $selected_date)
       ? $this->storage->getNamesByCategoryAndDate($selected_category, $selected_date, $today)
       : [];
+
     $selected_name = (string) $form_state->getValue('event_name');
     if (!$selected_name || !isset($name_options[$selected_name])) {
       $selected_name = array_key_first($name_options);

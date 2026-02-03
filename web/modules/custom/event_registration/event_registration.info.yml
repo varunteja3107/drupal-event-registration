@@ -1,4 +1,5 @@
 name: Event Registration
 type: module
+description: Custom event registration module for Drupal 10.
+package: Custom
 core_version_requirement: ^10
-
